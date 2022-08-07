@@ -3,5 +3,5 @@
 This is my os for `CC:Tweaked`. Also this is text os, without GUI.
 ## Insalling
 See [wiki](https://github.com/zimavi/diamondOS/wiki) to find guid how to install OS
-## Beta
-Soon...
+## Diamond OS 2
+See [wiki](https://github.com/zimavi/diamondOS/wiki/Diamond-OS-2) to look the dev status
