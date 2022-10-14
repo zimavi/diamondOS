@@ -6,7 +6,7 @@ See [wiki](https://github.com/zimavi/diamondOS/wiki) to find guid how to install
 ## Diamond OS 2
 See [wiki](https://github.com/zimavi/diamondOS/wiki/Diamond-OS-2) to look the dev status
 
-
+-----------------------------
 
 ## Posible inovations 
 This is the task list for **Diamond OS 2** because, this will be **GUI** os.
