@@ -14,7 +14,7 @@ This is the task list for **Diamond OS 2** because, this will be **GUI** os.
 - [ ] **Finish basic features** _(working on)_
 - [ ] **Finish install programs** _(working on)_
 - [ ] **Start Beta**
-## New features
+### New features
 - [ ] **Make task meneger.**
 - [x] **Make a window system**
 - [ ] **Make the possibility, to transfer pc to 'sleep mode' in X minutes (set in settings)**
