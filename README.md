@@ -33,4 +33,4 @@ This is the task list for **Diamond OS 2** because, this will be **GUI** os.
 - [ ] **Make possibility, to start recovery program, if init file will find, that there no all files, to boot**
 - [ ] **Make security boot mode. (will appear mode selection, if the system detects problems)**
 - [x] **Make the possibility, to use 'Diamond UEFI' for other OSs, to make development easier.**
-- [x] **Make two types of cores "Diamond OS" lite and normal** _(will soon appear on github)_
+- [x] **Make two types of cores "Diamond OS" lite and normal** _(1/3)_
