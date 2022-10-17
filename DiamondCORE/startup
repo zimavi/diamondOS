@@ -1,0 +1,31 @@
+os.pullEvent = os.pullEventRaw
+
+term.clear()
+term.setCursorPos(1,1)
+
+if fs.exists("/install") then
+	shell.run("delete", "/install")
+end
+if fs.exists("/cancel") then
+	shell.run("delete", "/cancel")
+end
+if fs.exists("/.deletetemp") then
+	shell.run("delete", "/.deletetemp")
+end
+shell.run("cp", "/disk/temp/install.lua", "/install")
+shell.run("cp", "/disk/temp/cancel.lua", "/cancel")
+shell.run("cp", "/disk/temp/.deletetemp.lua", "/.deletetemp")
+
+write("Welcome to ")
+term.setTextColor(colors.cyan)
+write("[OS name] [varsion] ")
+term.setTextColor(colors.white)
+print("installer!")
+write("To install type ")
+term.setTextColor(colors.green)
+print("'install'")
+term.setTextColor(colors.white)
+write("To cancel installation type ")
+term.setTextColor(colors.red)
+print("'cancel'")
+term.setTextColor(colors.white)

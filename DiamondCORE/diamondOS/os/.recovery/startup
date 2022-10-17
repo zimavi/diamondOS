@@ -1,0 +1,200 @@
+--BIOS (diamond c. 21.14)--
+--non-terminate event--
+os.PullEvent = os.PullEventRaw
+--BIOS (diamond c. 21.14) now has color ob boot--
+
+w,h = term.getSize()
+
+nOption = 0
+
+isTemp = false
+
+isBooting = false
+
+biosVer = "diamond c. 21.15"
+
+local function printCentered(y,s,clearLine)
+    local x = math.floor((w - string.len(s)) / 2)
+    term.setCursorPos(x,y)
+    if clearLine == true then
+        term.clearLine()
+    end
+    term.write(s)
+end
+
+local function Boot()
+    term.clear()
+    term.setCursorPos(1,1)
+    print("BIOS ("..biosVer..")")
+    print("Computer info: ")
+    sleep(1)
+    write("ID: ")
+    sleep(1)
+    term.setTextColor(colors.cyan)
+    print(os.getComputerID())
+    term.setTextColor(colors.white)
+    sleep(1)
+    --showing label and id--
+    if not os.getComputerLabel() then
+        write("Label: ")
+        sleep(1)
+        term.setTextColor(colors.red)
+        print("*NONE*")
+        term.setTextColor(colors.white)
+    else 
+        write("Label: ")
+        sleep(1)
+        term.setTextColor(colors.cyan)
+        print(os.getComputerLabel())
+        term.setTextColor(colors.white)
+    end
+    sleep(1)
+    textutils.slowPrint("Checking boot config...")
+    sleep(1)
+    --checking if ps supports color--
+    write("Color support: ")
+    sleep(1)
+    if not term.isColor() then
+        term.setTextColor(colors.red)
+        print("*ERROR* NO COLOR SUPPORT BY COMPUTER")
+    else 
+		term.setTextColor(colors.green)
+		print("OK")
+	end
+    term.setTextColor(colors.white)
+    sleep(1)
+    write("Boot config: ")
+    sleep(1)
+    --checking if ps has boot file path--
+    if not setting then
+        term.setTextColor(colors.red)
+        print("*ERROR* UNABLE TO GET BOOT CONFIG")
+        sleep(1)
+        term.setTextColor(colors.white)
+        while true do
+            sleep(0)
+        end
+    end
+    if not fs.exists(setting) then
+        term.setTextColor(colors.red)
+        print("*ERROR RUN FILE DOES NOT EXISTS*")
+        sleep(1)
+        term.setTextColor(colors.white)
+        while true do
+            sleep(0)
+        end
+    end
+    --bool file runing--
+    
+    term.setTextColor(colors.green)
+    print("GETTED")
+    term.setTextColor(colors.white)
+    sleep(1)
+    textutils.slowPrint("Running boot file...")
+    sleep(3)
+    if isTemp == true then
+        settings.set("bootFile", settings.get("bootOld"))
+        settings.unset("bootOld")
+        settings.undefine("bootOld")
+        settings.save()
+    end
+    term.clear()
+    term.setCursorPos(1,1)
+    shell.run(setting)
+end
+
+local function TimerToBoot()
+    while true do
+        local event = os.pullEvent("timer")
+        if event == "timer" then
+            isBooting = true
+            break
+        end
+    end
+end
+
+local function PressSettingButton()
+    while true do
+        local event, key = os.pullEvent("key")
+        if event == "key" and isBooting ~= true then
+            if keys.getName(key) == "delete" then
+                os.cancelTimer(timer)
+                while true do
+                    term.clear()
+                    term.setCursorPos(1,1)
+                    print("BIOS ("..biosVer..") /// BOOT CONFIG ///")
+                    if nOption == 0 then
+                        printCentered(math.floor(h / 2) - 1, "[ Set boot file ]")
+                        printCentered(math.floor(h / 2) - 0, "Boot from")
+                        printCentered(math.floor(h / 2) + 1, "Close")
+                    elseif nOption == 1 then
+                        printCentered(math.floor(h / 2) - 1, "Set boot file")
+                        printCentered(math.floor(h / 2) - 0, "[ Boot from ]")
+                        printCentered(math.floor(h / 2) + 1, "Close")
+                    else
+                        printCentered(math.floor(h / 2) - 1, "Set boot file")
+                        printCentered(math.floor(h / 2) - 0, "Boot from")
+                        printCentered(math.floor(h / 2) + 1, "[ Close ]")
+                    end
+                    local event, key = os.pullEvent()
+                    if event == "key" then
+                        if keys.getName(key) == "up" then
+                            if nOption > 0 then 
+                                nOption = nOption - 1
+                            end
+                        elseif keys.getName(key) == "down" then
+                            if nOption < 2 then
+                                nOption = nOption + 1
+                            end
+                        elseif keys.getName(key) == "enter" then
+                            if nOption == 0 then
+                                term.clear()
+                                term.setCursorPos(1,1)
+                                print("BIOS ("..biosVer..") /// BOOT CONFIG ///")
+                                print("\n\nPlease write full path to file. Current \""..setting.."\"")
+                                choice = read()
+                                print("Save? [Y/n]")
+                                if string.lower(read()) == "y" then
+                                    settings.set("bootFile", choice)
+                                    settings.save()
+                                end
+                            elseif nOption == 1 then
+                                term.clear()
+                                term.setCursorPos(1,1)
+                                print("BIOS ("..biosVer..") /// BOOT CONFIG ///")
+                                print("\n\nPlease write full path to file. (write 'cancel' to return)")
+                                choice = read()
+                                if string.lower(choice) ~= "cancel" then
+                                    setting = choice
+                                    print("Bootting...")
+                                    sleep(1)
+                                    break
+                                end
+                            elseif nOption == 2 then
+                                break
+                            end
+                        end
+                    end
+                end
+                break
+            end
+        elseif isBotting == true then
+            break
+        else
+            sleep(0)
+        end
+    end
+end
+
+--os.pullEvent = os.pullEventRaw
+
+--getting boot file path--
+setting = settings.get("bootFile")
+--printing lines :)--
+term.clear()
+term.setCursorPos(1,1)
+print("BIOS ("..biosVer..")")
+print("To open boot settings press DELETE...")
+timer = os.startTimer(3)
+parallel.waitForAny(PressSettingButton, TimerToBoot)
+Boot()

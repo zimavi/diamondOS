@@ -1,0 +1,84 @@
+os.pullEvent = os.pullEventRaw
+
+local w,h = term.getSize()
+
+function printCentered( y,s )
+   local x = math.floor((w - string.len(s)) / 2)
+   term.setCursorPos(x,y)
+   term.clearLine()
+   term.write( s )
+end
+
+local nOption = 1
+
+local function drawMenu()
+   term.clear()
+   term.setCursorPos(1,1)
+   term.write("[OS name here] // [OS version here] //")
+term.setCursorPos(1,2)
+shell.run("id")
+
+   term.setCursorPos(w-11,1)
+   if nOption == 1 then
+   term.write("Web")
+elseif nOption == 2 then
+   term.write("Get Files")
+elseif nOption == 3 then
+   term.write("Send Files")
+elseif nOption == 4 then
+   term.write("Back")
+else
+end
+
+end
+
+--GUI
+term.clear()
+local function drawFrontend()
+   printCentered( math.floor(h/2) - 3, "")
+   printCentered( math.floor(h/2) - 2, "Program List" )
+   printCentered( math.floor(h/2) - 1, "")
+   printCentered( math.floor(h/2) + 0, ((nOption == 1) and "[   Prog1    ]") or "Prog1 " )
+   printCentered( math.floor(h/2) + 1, ((nOption == 2) and "[   Prog2    ]") or "Prog2 " )
+   printCentered( math.floor(h/2) + 2, ((nOption == 3) and "[   Prog3    ]") or "Prog3 " )
+   printCentered( math.floor(h/2) + 3, ((nOption == 4) and "[  Install   ]") or "Install ")
+   printCentered( math.floor(h/2) + 4, ((nOption == 5) and "[    Back    ]") or "Back" )
+   printCentered( math.floor(h/2) + 5, "")
+end
+
+--Display
+drawMenu()
+drawFrontend()
+
+while true do
+	local e,p = os.pullEvent("key")
+		if p == keys.up then
+			if nOption > 1 then
+				nOption = nOption - 1
+				drawMenu()
+				drawFrontend()
+			end
+		elseif p == keys.down then
+			if nOption < 5 then
+				nOption = nOption + 1
+				drawMenu()
+				drawFrontend()
+			end
+		elseif p == keys.enter then
+			break
+		end
+end
+term.clear()
+
+--Conditions
+if nOption  == 1 then
+shell.run("/os/programs/PROG1")
+elseif nOption == 2 then
+shell.run("/os/programs/PROG2")
+elseif nOption == 3 then
+shell.run("/os/programs/PROG3")
+elseif nOption == 4 then
+shell.run("/os/.runFiles/install")
+else
+shell.run("/os/.sys/main")
+end
