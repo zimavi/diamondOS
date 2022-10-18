@@ -48,7 +48,7 @@ if fs.exists("versionInfo") then
 		shell.run("pastebin get [Pastebin code] /os/update/diamondOS/os/.runFiles/BSOD")
 		shell.run("pastebin get [Pastebin code] /os/update/diamondOS/os/.runFiles/ncBSOD")
 		shell.run("pastebin get dvFUiJ7k /os/update/diamondOS/os/.runFiles/.uninstall")
-		shell.run("pastebin get T4hMDcjM /os/update/diamondOS/os/.runFiles/.shutdown")
+		shell.run("pastebin get pPastebin code] /os/update/diamondOS/os/.runFiles/.shutdown")
 		shell.run("pastebin get [Pastebin code] /os/update/diamondOS/os/.sys/main")
 		shell.run("pastebin get [Pastebin code] /os/update/diamondOS/os/.sys/init")
 		shell.run("pastebin get 8VTiuDBx /os/update/temp/cancel.lua")
