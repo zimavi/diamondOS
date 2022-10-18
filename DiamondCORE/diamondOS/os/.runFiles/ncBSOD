@@ -11,7 +11,7 @@ function printCentered(y,s)
     term.write(s)
 end
 
-printCentered(math.floor(h/2) - 2, "Diamond OS")
+printCentered(math.floor(h/2) - 2, "Diamond CORE")
 printCentered(math.floor(h/2) + 0, "We find fatal error on your computer")
 printCentered(math.floor(h/2) + 1, "You should use color support computer")
 printCentered(math.floor(h/2) + 2, "to run the system. You may buy it ")
