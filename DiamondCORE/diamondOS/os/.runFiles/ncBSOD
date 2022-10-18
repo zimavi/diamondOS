@@ -1,5 +1,7 @@
 os.pullEvent = os.pullEventRaw
 
+local args = {...}
+
 w,h = term.getSize()
 
 term.clear()
@@ -11,15 +13,40 @@ function printCentered(y,s)
     term.write(s)
 end
 
-printCentered(math.floor(h/2) - 2, "Diamond CORE")
-printCentered(math.floor(h/2) + 0, "We find fatal error on your computer")
-printCentered(math.floor(h/2) + 1, "You should use color support computer")
-printCentered(math.floor(h/2) + 2, "to run the system. You may buy it ")
-printCentered(math.floor(h/2) + 3, "The computer will shutdown")
-printCentered(math.floor(h/2) + 4, "When you press enter")
-printCentered(math.floor(h/2) + 6, "Press enter to shutdown your computer")
-term.setCursorBlink(false)
+if #args < 1 then
+    term.setBackgroundColor(colors.black)
 
-read("")
+	term.clear()
 
-os.shutdown()
+	printCentered(math.floor(h/2) - 2, "Diamond CORE")
+	printCentered(math.floor(h/2) + 0, "We find fatal error on your computer")
+	printCentered(math.floor(h/2) + 1, "The computer will automaticaly reboot")
+    printCentered(math.floor(h/2) + 2, "in 5 seconds")
+	printCentered(math.floor(h/2) + 3, "If problem will appear,")
+	printCentered(math.floor(h/2) + 4, "ask our company for help")
+    printCentered(math.floor(h/2) + 6, "Error: [DO:00000] Fatal error while running os" )
+	printCentered(math.floor(h/2) + 7, "We hope, that this is small problam :)")
+	term.setCursorBlink(false)
+
+	sleep(5)
+
+	os.reboot()
+else
+    term.setBackgroundColor(colors.black)
+
+	term.clear()
+
+	printCentered(math.floor(h/2) - 2, "Diamond CORE")
+	printCentered(math.floor(h/2) + 0, "We find fatal error on your computer")
+	printCentered(math.floor(h/2) + 1, "The computer will automaticaly reboot")
+    printCentered(math.floor(h/2) + 2, "in 5 seconds")
+	printCentered(math.floor(h/2) + 3, "If problem will appear,")
+	printCentered(math.floor(h/2) + 4, "ask our company for help")
+    printCentered(math.floor(h/2) + 6, "Error: " .. args[1])
+	printCentered(math.floor(h/2) + 7, "We hope, that this is small problam :)")
+	term.setCursorBlink(false)
+
+	read("")
+
+	os.shutdown()
+end
