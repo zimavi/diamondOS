@@ -18,7 +18,7 @@ if #args < 1 then
 
 	term.clear()
 
-	printCentered(math.floor(h/2) - 2, "Diamond OS")
+	printCentered(math.floor(h/2) - 2, "Diamond CORE")
 	printCentered(math.floor(h/2) + 0, "We find fatal error on your computer")
 	printCentered(math.floor(h/2) + 1, "The computer will automaticaly reboot")
     printCentered(math.floor(h/2) + 2, "in 5 seconds")
@@ -36,7 +36,7 @@ else
 
 	term.clear()
 
-	printCentered(math.floor(h/2) - 2, "Diamond OS")
+	printCentered(math.floor(h/2) - 2, "Diamond CORE")
 	printCentered(math.floor(h/2) + 0, "We find fatal error on your computer")
 	printCentered(math.floor(h/2) + 1, "The computer will automaticaly reboot")
     printCentered(math.floor(h/2) + 2, "in 5 seconds")
