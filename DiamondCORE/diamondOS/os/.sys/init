@@ -2,6 +2,12 @@ os.pullEvent = os.pullEventRaw
 
 __version = "0.0.0"
 
+write("Powered by ")
+term.setTextColor(colors.cyan)
+write("Diamond CORE")
+term.setTextColor(colors.white)
+sleep(2)
+
 write("Checking for ")
 term.setTextColor(colors.cyan)
 write("[OS name] ")
