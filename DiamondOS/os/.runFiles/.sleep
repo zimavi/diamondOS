@@ -1,0 +1,67 @@
+settings.load()
+
+local hasModem = false
+
+if not settings.get("KeepModem", false) then
+	local modem = peripheral.find("modem")
+	if modem ~= nil then
+		if modem.isOpen(87) then
+			modem.close(87)
+		end
+	end
+else
+	local modem = peripheral.find("modem")
+	if modem ~= nil then
+		modem.open(87)
+		hasModem = true
+	end
+end
+
+local mayWakeUpFromNet = settings.get("WakeUpNet", false)
+
+term.clear()
+term.setCursorPos(1,1)
+
+local function WakeUpFromNet()
+	local modem = peripheral.find("modem")
+	if modem == nil then
+		while true do
+			sleep(0)
+		end
+	end
+	if not mayWakeUpFromNet then
+		while true do
+			sleep(0) 
+		end
+	end
+	while true do
+		local id, message = rednet.receive()
+		if message == "WakeUp" then
+			break
+		end
+		sleep(0)
+	end
+end
+
+local function WakeUpFromInterrupt()
+	while true do
+		local event = os.pullEvent("key")
+		if event == "key" then
+			break
+		end
+		sleep(0)
+	end
+end
+
+settings.save()
+
+parallel.waitForAny(WakeUpFromNet, WakeUpFromInterrupt)
+
+print("Waking up")
+
+sleep(1)
+
+term.clear()
+term.setCursorPos(1,1)
+
+shell.run("/os/.sys/main")

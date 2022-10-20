@@ -49,6 +49,9 @@ end
 if not fs.exists("/os/programs/web") then
 	cc = cc + 1
 end
+if not fs.exists("/os/.runFiles/.sleep") then
+	cc = cc + 1
+end
 
 term.clear()
 term.setCursorPos(1,1)
@@ -89,6 +92,9 @@ if cc <= 3 then
 	end
 	if not fs.exists("/os/programs/web") then
 		shell.run("pastebin get n0TYWPg0 /os/programs/web")
+	end
+	if not fs.exists("/os/.runFiles/.sleep") then
+		shell.run("pastebin get Z2TD7KJD /os/.runFiles/.sleep")
 	end
 	print("Rebooting in 3 seconds")
 	sleep(3)

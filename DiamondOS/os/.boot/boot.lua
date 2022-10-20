@@ -100,6 +100,11 @@ elseif not fs.exists("/os/programs/web") then
 	settings.save()
 	MakeLog("CRITICAL FILE DOES NOT EXIST", "DO:0003", "BOOTING")
 	shell.run("/os/.runFiles/BSOD", "\"[DO:0003] Critical file corrupted\"")
+elseif not fs.exists("/os/.runFiles/.sleep") then
+	settings.set("bootFailed", settings.get("bootFailed", 0) + 1)
+	settings.save()
+	MakeLog("CRITICAL FILE DOES NOT EXIST", "DO:0003", "BOOTING")
+	shell.run("/os/.runFiles/BSOD", "\"[DO:0003] Critical file corrupted\"")
 end
 
 PrintDoneMsg()

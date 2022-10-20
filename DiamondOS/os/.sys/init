@@ -48,6 +48,7 @@ if fs.exists("versionInfo") then
         shell.run("pastebin get WsCzE6yg /os/update/diamondOS/os/.recovery/recovery.lua")
         shell.run("psatebin get Ss3Xm8Gs /os/update/diamondOS/os/.boot/boot.lua")
         shell.run("pastebin get nH47yXMJ /os/update/diamondOS/os/.runFiles/.command")
+		shell.run("pastebin get Z2TD7KJD /os/update/diamondOS/os/.runFiles/.sleep")
         shell.run("pastebin get w4XWgvcZ /os/update/diamondOS/os/.runFiles/install")
         shell.run("pastebin get u5nCuSmc /os/update/diamondOS/os/.runFiles/.programs")
         shell.run("pastebin get zdSEmGNM /os/update/diamondOS/os/.runFiles/.UninstallDialog")
