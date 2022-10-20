@@ -15,7 +15,7 @@ local nOption = 1
 local function drawMenu()
    term.clear()
    term.setCursorPos(1,1)
-   term.write("Diamond OS // 1.1.14 // ")
+   term.write("Diamond OS // 1.1.15 // ")
 term.setCursorPos(1,2)
 shell.run("id")
 
