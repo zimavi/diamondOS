@@ -11,7 +11,7 @@ See [wiki](https://github.com/zimavi/diamondOS/wiki/Diamond-OS-2) to look the de
 ## Posible inovations 
 ### Diamond OS
 - [x] **Recovery program**
-- [ ] **Recovery settings**
+- [x] **Recovery settings**
 - [x] **BSoD log system**
 - [ ] **LogReader** _(canceled)_
 ### Diamond OS 2
