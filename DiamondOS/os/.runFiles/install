@@ -1,0 +1,59 @@
+os.pullEvent = os.pullEventRaw
+ 
+local w,h = term.getSize()
+ 
+local hasDisk
+local id
+ 
+term.clear()
+ 
+function printCentered( y,s )
+    local x = math.floor((w - string.len(s)) / 2)
+    term.setCursorPos(x,y)
+    term.clearLine()
+    term.write( s )
+end
+ 
+printCentered( math.floor(h/2) - 2, "Insert Disk")
+printCentered( math.floor(h/2) - 0, "Press ENTER to exit")
+ 
+local function DiskCheck(  )
+    while true do
+        if disk.hasData("left") then
+            hasDisk = true
+            break
+        end
+        sleep(0)
+    end
+end
+ 
+local function MayExit(  )
+    while true do
+        local event, key = os.pullEvent("key")
+        if event == "key" and hasDisk ~= true then
+            if keys.getName(key) == "enter" then
+                break
+            end
+        end
+        sleep(0)
+    end
+    shell.run("/os/.sys/main")
+end
+ 
+local function Install(  )
+    if fs.exists("/disk/install.lua") then
+        id = multishell.launch({}, "/disk/install.lua")
+        multishell.setTitle(id, "Installation")
+        while true do
+            if multishell.getCount() <= 1 then
+                shell.run("/os/.sys/main")
+            end
+            sleep(0)
+        end
+    else
+        shell.run("/os/.runFiles/BSOD", "\"[DO:0001] No or corrupted file\"")
+    end
+end
+ 
+parallel.waitForAny(DiskCheck, MayExit)
+Install()

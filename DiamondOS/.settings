@@ -1,0 +1,3 @@
+{
+  bootFile = "/os/.sys/init",
+}
