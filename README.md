@@ -10,10 +10,10 @@ See [wiki](https://github.com/zimavi/diamondOS/wiki/Diamond-OS-2) to look the de
 
 ## Posible inovations 
 ### Diamond OS
-- [ ] **Recovery program**
+- [x] **Recovery program**
 - [ ] **Recovery settings**
-- [ ] **BSoD log system**
-- [ ] **LogReader**
+- [x] **BSoD log system**
+- [ ] **LogReader** _(canceled)_
 ### Diamond OS 2
 This is the task list for **Diamond OS 2** because, this will be **GUI** os.
 
