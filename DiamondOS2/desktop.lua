@@ -1,4 +1,4 @@
---variables
+ --variables
 
 local w,h = term.getSize()
 bgrPath = settings.get("DiamondOS.cfg.bgr", "/diamondOS.beta/bin/desktop/wallpapers/bgr0.nfp")
@@ -56,16 +56,26 @@ function showAboutWindow()
 	if id >= 100 then
 		printCetered(math.floor(h / 2) - 3,"+----------[About]-------[X]+", false)
 		printCetered(math.floor(h / 2) - 2,"|     OS: Diamond OS 2      |", false)
-		printCetered(math.floor(h / 2) - 1,"|       Editon: Beta        |", false)
+		printCetered(math.floor(h / 2) - 1,"|        Editon: Dev        |", false)
 		printCetered(math.floor(h / 2) - 0,"|          ID: "..id.."          |", false)
+		printCetered(math.floor(h / 2) + 1,"|        Build: 1013        |")
 		printCetered(math.floor(h / 2) + 1,"|                           |", false)
 		printCetered(math.floor(h / 2) + 2,"|          [Close]          |", false)
 		printCetered(math.floor(h / 2) + 3,"+---------------------------+", false)
-	elseif id < 100 then
+	elseif id < 100 and id >= 10 then
 		printCetered(math.floor(h / 2) - 3,"+----------[About]-------[X]+", false)
 		printCetered(math.floor(h / 2) - 2,"|     OS: Diamond OS 2      |", false)
-		printCetered(math.floor(h / 2) - 1,"|       Editon: Beta        |", false)
+		printCetered(math.floor(h / 2) - 1,"|        Editon: Dev        |", false)
 		printCetered(math.floor(h / 2) - 0,"|          ID: 0"..id.."          |", false)
+		printCetered(math.floor(h / 2) + 1,"|        Build: 1013        |")
+		printCetered(math.floor(h / 2) + 2,"|                           |", false)
+		printCetered(math.floor(h / 2) + 3,"|          [Close]          |", false)
+		printCetered(math.floor(h / 2) + 4,"+---------------------------+", false)
+	elseif id < 10 then
+		printCetered(math.floor(h / 2) - 3,"+----------[About]-------[X]+", false)
+		printCetered(math.floor(h / 2) - 2,"|     OS: Diamond OS 2      |", false)
+		printCetered(math.floor(h / 2) - 1,"|        Editon: Dev        |", false)
+		printCetered(math.floor(h / 2) - 0,"|          ID: 00"..id.."          |", false)
 		printCetered(math.floor(h / 2) + 1,"|        Build: 1013        |")
 		printCetered(math.floor(h / 2) + 2,"|                           |", false)
 		printCetered(math.floor(h / 2) + 3,"|          [Close]          |", false)

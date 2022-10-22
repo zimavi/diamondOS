@@ -5,5 +5,5 @@
   bootDir = "diamondOS.beta/bin/.boot",
   temp = "diamondOS.beta/bin/.System/tmp",
   sysDir = "diamondOS.beta/bin/.System",
-  bootFile = "/os/.sys/init",
+  bootFile = "/os/.boot/boot.lua",
 }
