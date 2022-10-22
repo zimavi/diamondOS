@@ -1,0 +1,30 @@
+os.pullEvent = os.pullEventRaw
+
+w,h = term.getSize()
+
+term.clear()
+
+function printCentered(y,s)
+    local x = math.floor((w - string.len(s)) / 2)
+    term.setCursorPos(x,y)
+    term.clearLine()
+    term.write(s)
+end
+
+term.setBackgroundColor(colors.blue)
+
+term.clear()
+
+printCentered(math.floor(h/2) - 2, "Diamond OS")
+printCentered(math.floor(h/2) + 0, "We find fatal error on your computer")
+printCentered(math.floor(h/2) + 1, "The computer will automaticaly reboot")
+printCentered(math.floor(h/2) + 2, "in 5 seconds")
+printCentered(math.floor(h/2) + 3, "If problem will appear,")
+printCentered(math.floor(h/2) + 4, "ask our company for help")
+printCentered(math.floor(h/2) + 6, "We hope, that this is small problam :)")
+term.setCursorBlink(false)
+
+sleep(5)
+
+os.reboot()
+

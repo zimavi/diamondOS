@@ -1,0 +1,81 @@
+os.pullEvent = os.pullEventRaw
+
+local w,h = term.getSize()
+
+function printCentered( y,s )
+   local x = math.floor((w - string.len(s)) / 2)
+   term.setCursorPos(x,y)
+   term.clearLine()
+   term.write( s )
+end
+
+local nOption = 1
+
+local function drawMenu()
+   term.clear()
+   term.setCursorPos(1,1)
+   term.write("Diamond OS // 1.1.12 //")
+term.setCursorPos(1,2)
+shell.run("id")
+
+   term.setCursorPos(w-11,1)
+   if nOption == 1 then
+   term.write("Web")
+elseif nOption == 2 then
+   term.write("Get Files")
+elseif nOption == 3 then
+   term.write("Send Files")
+elseif nOption == 4 then
+   term.write("Back")
+else
+end
+
+end
+
+--GUI
+term.clear()
+local function drawFrontend()
+   printCentered( math.floor(h/2) - 3, "")
+   printCentered( math.floor(h/2) - 2, "Program List" )
+   printCentered( math.floor(h/2) - 1, "")
+   printCentered( math.floor(h/2) + 0, ((nOption == 1) and "[    Web     ]") or "Web " )
+   printCentered( math.floor(h/2) + 1, ((nOption == 2) and "[ Get Files  ]") or "Get Files " )
+   printCentered( math.floor(h/2) + 2, ((nOption == 3) and "[ Send Files ]") or "Send Files" )
+   printCentered( math.floor(h/2) + 3, ((nOption == 4) and "[    Back    ]") or "Back" )
+   printCentered( math.floor(h/2) + 4, "")
+end
+
+--Display
+drawMenu()
+drawFrontend()
+
+while true do
+	local e,p = os.pullEvent("key")
+		if p == keys.up then
+			if nOption > 1 then
+				nOption = nOption - 1
+				drawMenu()
+				drawFrontend()
+			end
+		elseif p == keys.down then
+			if nOption < 4 then
+				nOption = nOption + 1
+				drawMenu()
+				drawFrontend()
+			end
+		elseif p == keys.enter then
+			break
+		end
+end
+term.clear()
+
+--Conditions
+if nOption  == 1 then
+shell.run("/os/programs/web")
+elseif nOption == 2 then
+shell.run("/os/programs/getFiles")
+elseif nOption == 3 then
+shell.run("/os/programs/sendFiles")
+else
+shell.run("/os/.sys/main")
+end

@@ -1,0 +1,19 @@
+os.pullEvent = os.pullEventRaw
+
+term.clear()
+term.setCursorPos(1,1)
+
+print("Deleting os files...")
+shell.run("delete /os")
+print("Done.")
+sleep(1)
+print("Deleteing BIOS booting config...")
+settings.unset("bootFile")
+print("Done.")
+sleep(1)
+print("Deleting BIOS...")
+shell.run("delete startup")
+print("Done.")
+print("Computer will reboot in 3 seconds")
+sleep(3)
+os.reboot()

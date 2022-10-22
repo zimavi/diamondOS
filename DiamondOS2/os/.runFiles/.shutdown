@@ -1,0 +1,74 @@
+os.pullEvent = os.pullEventRaw
+
+local w,h = term.getSize()
+
+function printCentered( y,s )
+   local x = math.floor((w - string.len(s)) / 2)
+   term.setCursorPos(x,y)
+   term.clearLine()
+   term.write( s )
+end
+
+local nOption = 1
+
+local function drawMenu()
+   term.clear()
+   term.setCursorPos(1,1)
+   term.write("Diamond OS // 1.1.12 //")
+term.setCursorPos(1,2)
+shell.run("id")
+
+   term.setCursorPos(w-11,1)
+   if nOption == 1 then
+   term.write("Shutdown")
+elseif nOption == 2 then
+   term.write("Reboot")
+else
+   term.write("Back")
+end
+end
+
+--GUI
+term.clear()
+local function drawFrontend()
+   printCentered( math.floor(h/2) - 2, "")
+   printCentered( math.floor(h/2) - 1, "Shutdown dialog" )
+   printCentered( math.floor(h/2) + 0, "")
+   printCentered( math.floor(h/2) + 1, ((nOption == 1) and "[ Shutdown ]") or "Shutdown" )
+   printCentered( math.floor(h/2) + 2, ((nOption == 2) and "[  Reboot  ]") or "Reboot " )
+   printCentered( math.floor(h/2) + 3, ((nOption == 3) and "[   Back   ]") or "Back" )
+   printCentered( math.floor(h/2) + 4, "")
+end
+
+--Display
+drawMenu()
+drawFrontend()
+
+while true do
+	local e,p = os.pullEvent("key")
+		if p == keys.up then
+			if nOption > 1 then
+				nOption = nOption - 1
+				drawMenu()
+				drawFrontend()
+			end
+		elseif p == keys.down then
+			if nOption < 3 then
+				nOption = nOption + 1
+				drawMenu()
+				drawFrontend()
+			end
+		elseif p == keys.enter then
+			break
+		end
+end
+term.clear()
+
+--Conditions
+if nOption  == 1 then
+os.shutdown()
+elseif nOption == 2 then
+os.reboot()
+else
+shell.run("/os/.sys/main")
+end

@@ -1,0 +1,76 @@
+os.pullEvent = os.pullEventRaw
+
+__version = "1.1.13"
+
+write("Checking for ")
+term.setTextColor(colors.cyan)
+write("Diamond OS ")
+term.setTextColor(colors.white)
+print("updates")
+
+shell.run("pastebin get C4AXnTiu versionInfo")
+sleep(2)
+
+if fs.exists("versionInfo") then
+	local file = io.open("versionInfo", "r")
+	local version = file:read()
+	file:close()
+	fs.delete("versionInfo")
+	
+	if version ~= __version then
+		term.setTextColor(colors.cyan)
+		write("Diamond OS " .. version)
+		term.setTextColor(colors.white)
+		print(" is available!")
+		print("downloading updater at '/os/update'!")
+		print("copy all files from update folder to floppy disk")
+        if fs.exists("/os/update") then
+            shell.run("delete /os/update")
+        end
+		sleep(2)
+		shell.run("mkdir /os/update/")
+		shell.run("mkdir /os/update/bios/")
+		shell.run("mkdir /os/update/diamondOS/")
+		shell.run("mkdir /os/update/diamondOS/os/")
+        shell.run("mkdir /os/update/diamondOS/os/programs")
+		shell.run("mkdir /os/update/diamondOS/os/.recovery/")
+		shell.run("mkdir /os/update/diamondOS/os/.runFiles/")
+		shell.run("mkdir /os/update/diamondOS/os/.sys/")
+		shell.run("mkdir /os/update/temp/")
+		shell.run("pastebin get xy5Xbu8d /os/update/startup")
+		shell.run("pastebin get 5Zbtsqcp /os/update/bios/startup.bios")
+		shell.run("pastebin get dpELuj8e /os/update/diamondOS/back.lua")
+        shell.run("pastebin get n0TYWPg0 /os/update/diamondOS/os/programs/web")
+        shell.run("pastebin get eggHuRDr /os/update/diamondOS/os/programs/sendFiles")
+        shell.run("pastebin get XVFay6kL /os/update/diamondOS/os/programs/getFiles")
+		shell.run("pastebin get 5Zbtsqcp /os/update/diamondOS/os/.recovery/startup")
+		shell.run("pastebin get nH47yXMJ /os/update/diamondOS/os/.runFiles/.command")
+		shell.run("pastebin get u5nCuSmc /os/update/diamondOS/os/.runFiles/.programs")
+		shell.run("pastebin get zdSEmGNM /os/update/diamondOS/os/.runFiles/.UninstallDialog")
+		shell.run("pastebin get NtKBPusE /os/update/diamondOS/os/.runFiles/BSOD")
+		shell.run("pastebin get 0iexJb9q /os/update/diamondOS/os/.runFiles/ncBSOD")
+		shell.run("pastebin get dvFUiJ7k /os/update/diamondOS/os/.runFiles/.uninstall")
+		shell.run("pastebin get T4hMDcjM /os/update/diamondOS/os/.runFiles/.shutdown")
+		shell.run("pastebin get tdiZwXAi /os/update/diamondOS/os/.sys/main")
+		shell.run("pastebin get MKAUF1aB /os/update/diamondOS/os/.sys/init")
+		shell.run("pastebin get 8VTiuDBx /os/update/temp/cancel.lua")
+		shell.run("pastebin get pRKZLKge /os/update/temp/install.lua")
+		shell.run("pastebin get c80ZXcqT /os/update/temp/.deletetemp.lua")
+		print("Opening terminal...")
+		error()
+	else
+		term.setTextColor(colors.red)
+		print("No update available")
+		term.setTextColor(colors.white)
+	end
+else
+    term.setTextColor(colors.red)
+    print("*ERROR* Diamond INIT (DI1674338) Imposible to READ version file")
+    while true do
+        sleep(0)
+    end
+end
+
+term.clear()
+term.setCursorPos(1,1)
+shell.run("/os/.sys/main")

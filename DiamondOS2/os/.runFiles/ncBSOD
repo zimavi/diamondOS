@@ -1,0 +1,25 @@
+os.pullEvent = os.pullEventRaw
+
+w,h = term.getSize()
+
+term.clear()
+
+function printCentered(y,s)
+    local x = math.floor((w - string.len(s)) / 2)
+    term.setCursorPos(x,y)
+    term.clearLine()
+    term.write(s)
+end
+
+printCentered(math.floor(h/2) - 2, "Diamond OS")
+printCentered(math.floor(h/2) + 0, "We find fatal error on your computer")
+printCentered(math.floor(h/2) + 1, "You should use color support computer")
+printCentered(math.floor(h/2) + 2, "to run the system. You may buy it ")
+printCentered(math.floor(h/2) + 3, "The computer will shutdown")
+printCentered(math.floor(h/2) + 4, "When you press enter")
+printCentered(math.floor(h/2) + 6, "Press enter to shutdown your computer")
+term.setCursorBlink(false)
+
+read("")
+
+os.shutdown()

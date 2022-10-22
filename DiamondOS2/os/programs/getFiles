@@ -1,0 +1,25 @@
+rednet.open("top")
+
+term.clear()
+term.setCursorPos(1,1)
+
+write("Enter receive protocol): ")
+protocol = read()
+
+print("Getting files...")
+
+while true do
+    id,msg = rednet.receive(protocol)
+    if msg == "RECEIVE" then
+        id2,msg2 = rednet.receive(protocol)
+        f = fs.open(msg2, "w")
+        id3,msg3 = rednet.receive(protocol)
+        f.write(msg3)
+        f.close()
+        print("File " ..msg2.. " received!")
+        sleep(5)
+    end
+end
+
+term.clear()
+term.setCursorPos(1,1)

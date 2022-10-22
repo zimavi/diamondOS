@@ -1,0 +1,5 @@
+term.clear()
+term.setCursorPos(1,1)
+print("+-------------------------------------------------+")
+print("|   Welcome to terminal! To return type 'back'    |")
+print("+-------------------------------------------------+")

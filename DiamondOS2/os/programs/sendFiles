@@ -1,0 +1,39 @@
+rednet.open("top")
+
+term.clear()
+term.setCursorPos(1,1)
+
+write("Write computer id (if not, write -1): ")
+id = tonumber(read())
+
+write("Write path to file: ")
+sendF = read()
+
+write("Write protocol: ")
+protocol = read()
+
+if id == -1 then
+    if fs.exists(sendF) then
+        textutils.slowPrint("Sending File '"..sendF.."'!")
+        rednet.broadcast("RECEIVE", protocol)
+        rednet.broadcast(sendF, protocol)
+        file = fs.open(sendF, "r")
+        rednet.broadcast(file.readAll(), protocol)
+        file.close()
+    else
+        print(sendF.." does not exist")
+        return
+    end
+else
+    if fs.exists(sendF) then
+        textutils.slowPrint("Sending file '"..sendF.."' to "..id)
+        F = fs.open(sendF, "r")
+        rednet.send(id, "RECEIVE", protocol)
+        rednet.send(id, sendF, protocol)
+        rednet.send(id, F.readAll(), protocol)
+        F.close()
+    else
+        print(sendF.." does not exist!")
+        return
+    end
+end

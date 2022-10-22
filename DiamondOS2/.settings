@@ -1,0 +1,9 @@
+{
+  apiDir = "diamondOS.beta/bin/.System/apis",
+  BootList = "{\"/os/.sys/init\",\"/diamondOS.beta/bin/.boot/init\",}",
+  SystemName = "{\"diamondOS\",\"DiamondOS 2\",}",
+  bootDir = "diamondOS.beta/bin/.boot",
+  temp = "diamondOS.beta/bin/.System/tmp",
+  sysDir = "diamondOS.beta/bin/.System",
+  bootFile = "/os/.sys/init",
+}
