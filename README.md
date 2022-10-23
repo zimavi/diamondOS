@@ -21,22 +21,23 @@ This is the task list for **Diamond OS 2** because, this will be **GUI** os.
 - [ ] **Finish install programs** _(working on)_
 - [ ] **Start Beta**
 #### New features
-- [ ] **Make task meneger.**
+- [x] **Make task meneger.** _(Cant terminate programs)_
 - [x] **Make a window system**
 - [ ] **Make the possibility, to transfer pc to 'sleep mode' in X minutes (set in settings)**
 - [ ] **Make the possibility, to block deleting programs from the special delete app.** _(canceled)_
-- [ ] **Make apps as settings, program manager, etc.**
-- [ ] **Make an account system** _(canceled. Will be just a possibility to block system using password)_ 
+- [ ] **Make apps as settings, program manager, etc.** _(working on)_
+- [ ] **Make an account system** _(canceled. Will be just a possibility to block system using password)_ _May be_
 - [ ] **Block some commands for users without admin permission** _canceled_
 - [ ] **Make app link system** _(canceled)_
-- [ ] **Make OS multitask**
+- [x] **Make OS multitask**
 - [ ] **Make API, to become app development easier. Called 'diamond API'** _(working on)_
 - [ ] **Make the possibility, to copy the necessary API to the work directory, to load them from** `require()` **using diamond API's method.** _(canceled)_
 - [x] **Make the possibility, to change wallpapers.**
 - [ ] **Write app development wiki.** 
 - [ ] **Make the possibility, to download APIs only in the installer.**
 - [ ] **Make 'Diamond UEFI'** _(working on)_
-- [ ] **Make possibility, to start recovery program, if init file will find, that there no all files, to boot**
+- [ ] **Add 'Diamond UEFI', 'EFI/BIOS' support**
+- [x] **Make possibility, to start recovery program, if init file will find, that there no all files, to boot**
 - [ ] **Make security boot mode. (will appear mode selection, if the system detects problems)**
 - [x] **Make the possibility, to use 'Diamond UEFI' for other OSs, to make development easier.**
 - [x] **Make two types of cores "Diamond OS" lite and normal** _(1/3)_
