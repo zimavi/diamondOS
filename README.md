@@ -34,7 +34,7 @@ This is the task list for **Diamond OS 2** because, this will be **GUI** os.
 - [ ] **Make the possibility, to copy the necessary API to the work directory, to load them from** `require()` **using diamond API's method.** _(canceled)_
 - [x] **Make the possibility, to change wallpapers.**
 - [ ] **Write app development wiki.** 
-- [ ] **Make the possibility, to download APIs only in the installer.**
+- [ ] **Make the possibility, to download APIs only in the installer.** _(May be canceled)_
 - [ ] **Make 'Diamond UEFI'** _(working on)_
 - [ ] **Add 'Diamond UEFI', 'EFI/BIOS' support**
 - [x] **Make possibility, to start recovery program, if init file will find, that there no all files, to boot**
