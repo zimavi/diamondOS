@@ -1,9 +1,10 @@
- --variables
+os.pullEvent = os.pullEventRaw
+--variables
 
 local w,h = term.getSize()
+bgrColor = settings.get("DiamondOS.cfg.bgrC", "/diamondOS.beta/bin/desktop/wallpapers/bgrC.nfp")
 bgrPath = settings.get("DiamondOS.cfg.bgr", "/diamondOS.beta/bin/desktop/wallpapers/bgr0.nfp")
 openedMenu = false
-openedPrograms = false
 
 --functions
 
@@ -27,12 +28,13 @@ end
 
 local function resetwindows()
 	openedMenu = false
-	openedPrograms = false
 end
 
 local function drawdesk()
 	term.clear()
 	term.setCursorPos(1,1)
+	deskimage = paintutils.loadImage(bgrColor)
+	paintutils.drawImage(deskimage, 1, 1)
 	deskimage = paintutils.loadImage(bgrPath)
 	paintutils.drawImage(deskimage, 1, 1)
 	drawhotbar()
@@ -42,45 +44,7 @@ function drawhotbar()
 	term.setBackgroundColor(colors.gray)
 	term.setCursorPos(1,1)
 	term.clearLine()
-	if openedPrograms == true then
-		print("[ OS ]  |  [Close]") -- [CLOSE] 12-18
-	else
-		print("[ OS ]")
-	end
-end
-
-function showAboutWindow()
-	resetwindows()
-	drawdesk()
-	id = os.getComputerID()
-	if id >= 100 then
-		printCetered(math.floor(h / 2) - 3,"+----------[About]-------[X]+", false)
-		printCetered(math.floor(h / 2) - 2,"|     OS: Diamond OS 2      |", false)
-		printCetered(math.floor(h / 2) - 1,"|        Editon: Dev        |", false)
-		printCetered(math.floor(h / 2) - 0,"|          ID: "..id.."          |", false)
-		printCetered(math.floor(h / 2) + 1,"|        Build: 1013        |")
-		printCetered(math.floor(h / 2) + 1,"|                           |", false)
-		printCetered(math.floor(h / 2) + 2,"|          [Close]          |", false)
-		printCetered(math.floor(h / 2) + 3,"+---------------------------+", false)
-	elseif id < 100 and id >= 10 then
-		printCetered(math.floor(h / 2) - 3,"+----------[About]-------[X]+", false)
-		printCetered(math.floor(h / 2) - 2,"|     OS: Diamond OS 2      |", false)
-		printCetered(math.floor(h / 2) - 1,"|        Editon: Dev        |", false)
-		printCetered(math.floor(h / 2) - 0,"|          ID: 0"..id.."          |", false)
-		printCetered(math.floor(h / 2) + 1,"|        Build: 1013        |")
-		printCetered(math.floor(h / 2) + 2,"|                           |", false)
-		printCetered(math.floor(h / 2) + 3,"|          [Close]          |", false)
-		printCetered(math.floor(h / 2) + 4,"+---------------------------+", false)
-	elseif id < 10 then
-		printCetered(math.floor(h / 2) - 3,"+----------[About]-------[X]+", false)
-		printCetered(math.floor(h / 2) - 2,"|     OS: Diamond OS 2      |", false)
-		printCetered(math.floor(h / 2) - 1,"|        Editon: Dev        |", false)
-		printCetered(math.floor(h / 2) - 0,"|          ID: 00"..id.."          |", false)
-		printCetered(math.floor(h / 2) + 1,"|        Build: 1013        |")
-		printCetered(math.floor(h / 2) + 2,"|                           |", false)
-		printCetered(math.floor(h / 2) + 3,"|          [Close]          |", false)
-		printCetered(math.floor(h / 2) + 4,"+---------------------------+", false)
-	end
+	print("[ OS ]")
 end
 
 function menu()
@@ -89,7 +53,7 @@ end
 function main()
 	event, button, x, y = os.pullEvent("mouse_click")
 	if button == 1 then
-		if y == 1 and x >= 1 and x <= 6 then
+		if y == 1 and x >= 1 and x <= 6 and openedMenu == false then
 			openedMenu = true
 			print("[ Programs ]")
 			print("            ")
@@ -98,12 +62,14 @@ function main()
 			print("[   Exit   ]")
 			print("            ")
 			print("[   About  ]")
+			--print("[  TaskMGR ]")
 		elseif y == 2 and x >= 1 and x <= 12 and openedMenu == true then
-			openedPrograms = true
-			openedMenu = false
-			term.setBackgroundColor(colors.black)
-			term.clear()
+			drawdesk()
 			drawhotbar()
+			openedMenu = false
+			local id = multishell.launch({multishell = multishell, term = term, os = os, shell = shell, settings = settings, textutils = textutils}, "/diamondOS.beta/bin/.System/systemApps/proglist.lua")
+			multishell.setTitle(id, "Program List")
+			multishell.setFocus(id)
 		elseif y == 4 and x >= 1 and x <= 12 and openedMenu == true then
 			os.shutdown()
 		elseif y == 5 and x >= 1 and x <= 12 and openedMenu == true then
@@ -111,19 +77,22 @@ function main()
 		elseif y == 6 and x >= 1 and x <= 12 and openedMenu == true then
 			finishApp()
 		elseif y == 8 and x >= 1 and x <= 12 and openedMenu == true then
-			showAboutWindow()
-		elseif y == 1 and x >= 12 and x <= 18 and openedPrograms == true then
-			resetwindows()
 			drawdesk()
+			drawhotbar()
+			openedMenu = false
+			local id = multishell.launch({os = os}, "/diamondOS.beta/bin/.System/systemApps/osver.lua")
+			multishell.setTitle(id, "About")
+			multishell.setFocus(id)
+		--elseif y == 9 and x >= 1 and x <= 12 and openedMenu == true then
+		--	drawdesk()
+		--	drawhotbar()
+		--	openedMenu = false
+		--	local id = multishell.launch({multishell = multishell, term = term, os = os, shell = shell}, "/diamondOS.beta/bin/.System/systemApps/taskmgr.lua")
+		--	multishell.setTitle(id, "Task Manager")
+		--	multishell.setFocus(id)
 		else
-			if openedPrograms == true then
-				term.setBackgroundColor(colors.black)
-				term.clear()
-				drawhotbar()
-			else
-				drawdesk()
-				resetwindows()
-			end
+			drawdesk()
+			resetwindows()
 		end
 	end
 	main()

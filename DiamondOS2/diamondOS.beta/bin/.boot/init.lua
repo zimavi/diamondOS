@@ -1,5 +1,7 @@
 os.pullEvent = os.pullEventRaw
 
+settings.load("/.settings")
+
 shell.run("cp", "/"..settings.get("apiDir").."/diamondAPI.lua", "/"..settings.get("bootDir"))
 local dAPI = require("diamondAPI")
 
@@ -18,6 +20,7 @@ local BootList = textutils.unserialize(settings.get("BootList"))
 local SystemName = textutils.unserialize(settings.get("SystemName"))
 
 if table.getn(BootList) < 1 and BootList[1] ~= nil then
+	shell.run("delete", "/"..settings.get("bootDir").."/diamondAPI.lua")
 	--shell.run(BootList[1])
 elseif table.getn(BootList) > 1 then
 	while true do

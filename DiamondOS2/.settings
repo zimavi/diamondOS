@@ -1,9 +1,10 @@
 {
+  programs = "{{\"/diamondOS.beta/bin/.System/systemApps/taskmgr.lua\", \"Task Manager\", \"\", false},{\"/diamondOS.beta/bin/.System/systemApps/calc.lua\", \"Calculator\", \"\", false},}",
   apiDir = "diamondOS.beta/bin/.System/apis",
   BootList = "{\"/os/.sys/init\",\"/diamondOS.beta/bin/.boot/init\",}",
   SystemName = "{\"diamondOS\",\"DiamondOS 2\",}",
   bootDir = "diamondOS.beta/bin/.boot",
   temp = "diamondOS.beta/bin/.System/tmp",
   sysDir = "diamondOS.beta/bin/.System",
-  bootFile = "/os/.boot/boot.lua",
+  bootFile = "/.settings",
 }

@@ -4,6 +4,7 @@ settings.set("temp", "diamondOS.beta/bin/.System/tmp")
 settings.set("sysDir", "diamondOS.beta/bin/.System")
 settings.set("apiDir", "diamondOS.beta/bin/.System/apis")
 settings.set("bootDir", "diamondOS.beta/bin/.boot")
+settings.set("sysAppDir", "diamondOS.beta/bin/.System/systemApps")
 settings.save()
 
 function downloadItem( pastebin, path, fileName )

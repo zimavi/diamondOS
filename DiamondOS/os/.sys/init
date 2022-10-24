@@ -108,4 +108,4 @@ if not fs.exists("/os/.sys/main") then
 end
 term.clear()
 term.setCursorPos(1,1)
-shell.run("/os/.sys/main")
+shell.run("/os/.sys/login")
